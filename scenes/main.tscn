@@ -1,0 +1,63 @@
+[gd_scene load_steps=6 format=3 uid="uid://blyut67ew2bvh"]
+
+[ext_resource type="Script" path="res://script/main.gd" id="1_v3ha5"]
+[ext_resource type="PackedScene" uid="uid://bsp2oel0scgph" path="res://scenes/player.tscn" id="1_vte0o"]
+[ext_resource type="PackedScene" uid="uid://bgf7k3bpgjke2" path="res://scenes/levels/level1.tscn" id="2_j3cv3"]
+[ext_resource type="FontFile" uid="uid://c4ngk15fwnq3w" path="res://assets/fonts/Square-Black.ttf" id="4_tlqct"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w24om"]
+bg_color = Color(0.0745098, 0.6, 0.6, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_size = 5
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_v3ha5")
+
+[node name="Player" parent="." instance=ExtResource("1_vte0o")]
+position = Vector2(194, 399)
+scale = Vector2(3, 3)
+
+[node name="levelbuild" parent="." instance=ExtResource("2_j3cv3")]
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="ScorePanel" type="Panel" parent="HUD"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -70.0
+offset_top = 40.0
+offset_right = 70.0
+offset_bottom = 90.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w24om")
+
+[node name="ScoreLabel" type="Label" parent="HUD/ScorePanel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -50.5
+offset_top = 10.0
+offset_right = 50.5
+offset_bottom = 45.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("4_tlqct")
+theme_override_font_sizes/font_size = 32
+text = "Score: 0"
+
+[node name="fade" type="ColorRect" parent="HUD"]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
